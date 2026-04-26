@@ -39,10 +39,13 @@ MacOS, Windows
 # Result Reproduction Instructions
 NOTE: Instructions are also provided in Movie_Sentiment_CODE.ipynb.
 
-Download the data. You can use the 'imdb_sup.csv' file in the DATA folder or download the dataset from this link: https://www.kaggle.com/datasets/nisargchodavadiya/imdb-movie-reviews-with-ratings-50k. If downloading the dataset from the Kaggle link be sure to either rename the csv to 'imdb_sup.csv' or replace all instances of 'imdb_sup.csv' with the name of the data csv in the script.
+Download the data. You can use the 'imdb_sup.csv' file in the DATA folder or download the dataset from this link: https://www.kaggle.com/datasets/nisargchodavadiya/imdb-movie-reviews-with-ratings-50k. 
+If downloading the dataset from the Kaggle link be sure to either rename the csv to 'imdb_sup.csv' or replace all instances of 'imdb_sup.csv' with the name of the data csv in the script.
 Download the notebook 'Movie_Sentiment_CODE.ipynb' found in the SCRIPTS folder.
 Open the notebook in your software of choice (Jupyter Notebook, Google Colab, Visual Studio Code etc)
-Organize the notebook ('Movie_Sentiment_CODE.ipynb') and data ('imdb_sup.csv') into the same DATA and SCRIPTS folder organization as shown in the Documentation Map. You can skip this step and simply have the notebook and data exist together is the same directory, however, for this to work you will need to make slight changes to the script. Look for the "NOTE" comments in the first two code chunks and follow the instructions.
+Organize the notebook ('Movie_Sentiment_CODE.ipynb') and data ('imdb_sup.csv') into the same DATA and SCRIPTS folder organization as shown in the Documentation Map. 
+You can skip this step and simply have the notebook and data exist together is the same directory, however, for this to work you will need to make slight changes to the script. 
+Look for the "NOTE" comments in the first two code chunks and follow the instructions.
 Install all necessary packages/modules (listed above). Make sure that the package are installed in the environment you will be using to run the notebook.
 Run each code block in the notebook in order.
 
