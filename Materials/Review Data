@@ -1,0 +1,6 @@
+import pandas as pd
+
+url = 'https://raw.githubusercontent.com/isaiahluc/M3MovieSentiment/main/DATA/imdb_reviews_compound.csv'
+df = pd.read_csv(url)
+
+print("Data loaded successfully from GitHub!")
