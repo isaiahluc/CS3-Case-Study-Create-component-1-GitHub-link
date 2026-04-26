@@ -1,7 +1,7 @@
+# Excecute this code in python to extract Compound Data (File is too large to upload directly)
 
 
 import pandas as pd
-
 
 url = 'https://raw.githubusercontent.com/isaiahluc/M3MovieSentiment/refs/heads/main/DATA/imdb_sup.csv'
 df = pd.read_csv(url)
