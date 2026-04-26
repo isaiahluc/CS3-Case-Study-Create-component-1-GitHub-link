@@ -5,3 +5,5 @@ import pandas as pd
 
 url = 'https://raw.githubusercontent.com/isaiahluc/M3MovieSentiment/refs/heads/main/DATA/imdb_sup.csv'
 df = pd.read_csv(url)
+
+df.to_csv('imdb_sup.csv', index=False)
