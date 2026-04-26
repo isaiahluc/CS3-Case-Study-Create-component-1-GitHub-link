@@ -3,6 +3,9 @@
 # Introduction
 The primary goal is to determine the relationship between user ratings and textual sentiment using the VADER sentiment analysis tool.
 
+# Project Structure and Navigation
+The Hook folder contains introductory materials, while the Rubric gives a detailed outline. The Materials directory houses the raw data, relevant articles, and blog posts. The SCRIPTS folder contains the core logic—specifically a Jupyter Notebook for data processing. The OUTPUT folder stores all generated plots and findings.
+
 # Software and Platform 
 Analysis was performed using Python in a Jupyter Notebook run in both Visual Studio Code and Google Colab. Visulizations were preformed using R in R Studio.
 
