@@ -1,0 +1,159 @@
+---
+title: "IMDB_data"
+output: html_document
+date: "2026-02-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#set up r file and check data
+
+#install.packages("data.table")
+library(data.table)
+dt <- fread("C:/Users/carly/Downloads/imdb_sup.csv")
+dt2 <- fread("C:/Users/carly/Downloads/my_dataframe(in).csv")
+head(dt)
+head(dt2)
+```
+```{r}
+#see what is inside the files
+
+names(dt)
+str(dt$Rating)
+summary(dt$Rating)
+rating_counts <- dt[, .N, by = Rating][order(Rating)]
+rating_counts2 <- dt2[, .N, by = Rating][order(Rating)]
+```
+
+
+```{r}
+# plot Distribution of Ratings for both new and old dataset
+library(ggplot2)
+ggplot(rating_counts, aes(x = factor(Rating), y = N)) +
+  geom_col(fill = "steelblue") +
+  labs(title = "Distribution of Ratings",
+    x = "Rating",
+    y = "Count") +theme_minimal()
+
+
+ggplot(rating_counts2, aes(x = factor(Rating), y = N)) +
+  geom_col(fill = "steelblue") +
+  labs(title = "Distribution of Ratings",
+    x = "Rating",
+    y = "Count") +theme_minimal()
+```
+
+
+```{r}
+
+#check sentiment distribution for both new and old dataset
+
+dt[, SentimentLabel := factor(
+  Sentiment,
+  levels = c(0, 1),
+  labels = c("Negative", "Positive")
+)]
+
+sentiment_counts <- dt[, .N, by = SentimentLabel]
+
+ggplot(sentiment_counts, aes(x = SentimentLabel, y = N / sum(N))) +
+  geom_col(fill = "darkorange") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Sentiment Distribution (%)",
+    x = "Sentiment",
+    y = "Percentage"
+  ) +
+  theme_minimal()
+
+
+dt2[, SentimentLabel := factor(
+  Sentiment,
+  levels = c(-1, 1, 0),
+  labels = c("Negative", "Positive", "Neutral")
+)]
+sentiment_counts2 <- dt2[, .N, by = SentimentLabel]
+ggplot(sentiment_counts2, aes(x = SentimentLabel, y = N / sum(N))) +
+  geom_col(fill = "darkorange") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Sentiment Distribution (%)",
+    x = "Sentiment",
+    y = "Percentage"
+  ) +
+  theme_minimal()
+```
+
+
+```{r}
+# plot for both new and old dataset for ptobability of a postive sentiment by rating and also ratings by sentiment 
+
+dt[, Rating := as.numeric(Rating)]
+dt <- dt[!is.na(Rating) & Rating >= 1 & Rating <= 10]
+
+sent_by_rating <- dt[
+  , .(PositiveRate = mean(Sentiment)),
+  by = Rating
+][order(Rating)]
+
+
+ggplot(sent_by_rating, aes(x = Rating, y = PositiveRate)) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  geom_point(color = "steelblue", size = 2) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Probability of Positive Sentiment by Rating",
+    x = "Rating",
+    y = "Positive Sentiment Rate"
+  ) +
+  theme_minimal()
+ggplot(dt, aes(x = factor(Sentiment), y = Rating)) +
+  geom_boxplot(fill = "lightgray") +
+  scale_x_discrete(labels = c("0" = "Negative", "1" = "Positive")) +
+  labs(
+    title = "Ratings by Sentiment",
+    x = "Sentiment",
+    y = "Rating"
+  ) +
+  theme_minimal()
+
+
+dt2[, Rating := as.numeric(Rating)]
+dt2 <- dt2[!is.na(Rating) & Rating >= 1 & Rating <= 10]
+
+sent_by_rating <- dt2[
+  , .(PositiveRate = mean(Sentiment)),
+  by = Rating
+][order(Rating)]
+
+ggplot(sent_by_rating, aes(x = Rating, y = PositiveRate)) +
+  geom_line(color = "steelblue", linewidth = 1) +
+  geom_point(color = "steelblue", size = 2) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Probability of Positive Sentiment by Rating",
+    x = "Rating",
+    y = "Positive Sentiment Rate"
+  ) +
+  theme_minimal()
+ggplot(dt2, aes(x = factor(Sentiment), y = Rating)) +
+  geom_boxplot(fill = "lightgray") +
+  scale_x_discrete(labels = c("-1" = "Negative", "1" = "Positive")) +
+  labs(
+    title = "Ratings by Sentiment",
+    x = "Sentiment",
+    y = "Rating"
+  ) +
+  theme_minimal()
+```
+```{r}
+#distibution of compund scores
+ggplot(dt2, aes(x = compound)) +
+  geom_histogram(bins = 50, fill = "steelblue") +
+  labs(title = "Distribution of VADER Compound Scores")
+
+```
+
