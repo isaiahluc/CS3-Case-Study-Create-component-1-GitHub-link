@@ -10,22 +10,30 @@ Required Modules:
 
 numpy
 install: https://numpy.org/install/
+
 pandas
 install: https://pandas.pydata.org/pandas-docs/stable/getting_started/install.html
+
 VADER sentiment
 install: https://vadersentiment.readthedocs.io/en/latest/pages/installation.html
+
 statsmodels
 install: https://www.statsmodels.org/dev/install.html
+
 scikit-learn (sklearn)
 install: https://scikit-learn.org/stable/install.html
+
+
 Required Modules (for R):
 
 ggplot2
 install: https://scikit-learn.org/stable/install.html
+
 data.table
 install: (https://www.rdocumentation.org/packages/data.table/versions/1.18.2.1)
-Platform Used:
 
+
+Platform Used:
 MacOS, Windows
 
 # Result Reproduction Instructions
